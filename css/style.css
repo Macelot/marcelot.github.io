@@ -538,9 +538,9 @@ Contact Us
 }
 
 #errormessage {
-    color: red;
+    color: orange;
     display:none;
-    border:1px solid red;
+    border:1px solid orange;
     text-align:center;
     padding:15px;
     font-weight:600;
