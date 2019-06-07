@@ -15,6 +15,7 @@
   <link rel="stylesheet" type="text/css" href="css/style.css">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
 
+  	
 
 </head>
 
@@ -523,11 +524,11 @@
         <input type="hidden" name="token_" value="123zxcfgh">
           <div class="col-md-6 col-sm-6 col-xs-12 left">
             <div class="form-group">
-              <input type="text" name="nome_" class="form-control form" id="name" placeholder="Seu Nome" data-rule="minlen:4" data-msg="Por favor, preencha o mínimo de 4 letras no Nome" />
+              <input type="text" name="nome_" class="form-control form" id="name" placeholder="Seu nome" data-rule="minlen:4" data-msg="Por favor, preencha o mínimo de 4 letras no Nome" />
               <div class="validation"></div>
             </div>
             <div class="form-group">
-              <input type="email" class="form-control" name="email_" id="email" placeholder="Seu Email" data-rule="email" data-msg="Por favor, informe um email válido" />
+              <input type="email" class="form-control" name="email_" id="email" placeholder="Seu email" data-rule="email" data-msg="Por favor, informe um email válido" />
               <div class="validation"></div>
             </div>
             <!--div class="form-group">
@@ -538,7 +539,7 @@
 
           <div class="col-md-6 col-sm-6 col-xs-12 right">
             <div class="form-group">
-              <textarea class="form-control" name="corpo_" rows="3" data-rule="required" data-msg="Please write something for us" placeholder="Mensagem"></textarea>
+              <textarea class="form-control" name="corpo_" rows="4" data-rule="required" data-msg="Por favor escreva algo." placeholder="Mensagem"></textarea>
               <div class="validation"></div>
             </div>
           </div>
@@ -559,16 +560,17 @@
 
       <h3>Acesse o material gratuito</h3>
 
-      <form class="mc-trial row">
+      <form action="http://vps9431.publiccloud.com.br/atual/fale/enviarebook.php" name="ebook" method="post"  class="mc-trial row">
+        <input type="hidden" name="token_" value="123zxcfghopq">
         <div class="form-group col-md-3 col-md-offset-2 col-sm-4">
           <div class=" controls">
-            <input name="nome" placeholder="Seu nome" class="form-control" type="text">
+            <input name="nome__" placeholder="Seu nome" class="form-control" type="text">
           </div>
         </div>
         <!-- End email input -->
         <div class="form-group col-md-3 col-sm-4">
           <div class=" controls">
-            <input name="EMAIL" placeholder="Seu melhor email" class="form-control" type="email">
+            <input name="email__" placeholder="Seu melhor email" class="form-control" type="email">
           </div>
         </div>
         <!-- End email input -->
