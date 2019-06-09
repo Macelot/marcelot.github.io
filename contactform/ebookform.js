@@ -101,13 +101,13 @@ jQuery(document).ready(function($) {
       success: function(msg) {
         // alert(msg);
         if (msg == 'OK') {
-          $("#sendmessage").addClass("show");
-          $("#errormessage").removeClass("show");
+          $("#sendmessageebook").addClass("show");
+          $("#errormessageebook").removeClass("show");
           $('.contactForm').find("input, textarea").val("");
         } else {
-          $("#sendmessage").removeClass("show");
-          $("#errormessage").addClass("show");
-          $('#errormessage').html(msg);
+          $("#sendmessageebook").removeClass("show");
+          $("#errormessageebook").addClass("show");
+          $('#errormessageebook').html(msg);
           
         }
 
