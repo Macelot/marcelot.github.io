@@ -527,7 +527,7 @@ Contact Us
     font-size:13px;
 }
 
-#sendmessage {
+#sendmessage,sendmessageebook  {
     color: green;
     border:1px solid green;
     display:none;
@@ -537,7 +537,7 @@ Contact Us
     margin-bottom:15px;
 }
 
-#errormessage {
+#errormessage, errormessageebook {
     color: orange;
     display:none;
     border:1px solid orange;
@@ -547,7 +547,7 @@ Contact Us
     margin-bottom:15px;
 }
 
-#sendmessage.show, #errormessage.show, .show {
+#sendmessage.show, sendmessageebook.show, #errormessage.show, #errormessageebook.show, .show {
 	display:block;
 }
 /***********************************
