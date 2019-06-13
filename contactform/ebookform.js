@@ -88,7 +88,11 @@ jQuery(document).ready(function($) {
         i.next('.validation').html((ierror ? (i.attr('data-msg') != undefined ? i.attr('data-msg') : 'wrong Input') : '')).show('blind');
       }
     });
-    if (ferror) return false;
+    if (ferror) {
+    	//adicionar classe error
+    	 $("#btnSend").addClass("error");	
+    	return false;
+    }
     else var str = $(this).serialize();
     var action = $(this).attr('action');
     if( ! action ) {
@@ -103,12 +107,12 @@ jQuery(document).ready(function($) {
         if (msg == 'OK') {
           $("#sendmessageebook").addClass("show");
           $("#errormessageebook").removeClass("show");
-          $('.contactForm').find("input, textarea").val("");
+          //success
         } else {
           $("#sendmessageebook").removeClass("show");
           $("#errormessageebook").addClass("show");
           $('#errormessageebook').html(msg);
-          
+          $("#btnSend").addClass("success");
         }
 
       }
