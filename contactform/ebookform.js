@@ -90,6 +90,7 @@ jQuery(document).ready(function($) {
     });
     if (ferror) {
     	//adicionar classe error
+    	console.log(ferror);
     	 $("#btnSend").addClass("error");	
     	return false;
     }
