@@ -27,7 +27,7 @@ $(function() {
   e.target.classList.add('animate');
   setTimeout(function(){
     e.target.classList.remove('animate');
-  },6000);
+  },9000);
 };
 
 var classname = document.getElementsByClassName("button1");
