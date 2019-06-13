@@ -570,22 +570,24 @@
 
       <h3>Solicite o Ebook gratuito <font color="#FFFFFF"><i>Desenhando Fórmulas de Química em LaTeX</i></font>. </h3>
       </h2><span><p>Você receberá apenas um e-mail. Prometo não utilizar suas informações de contato para enviar qualquer tipo de SPAM.</p></span><p><span>Alguns e-mails podem ficar no lixo eletrônico.</p></span></h2>
-      <form action="https://vps9431.publiccloud.com.br/atual/fale/enviarebook.php" name="ebook" method="post" class="ebookForm">
+      <form action="https://vps9431.publiccloud.com.br/atual/fale/enviarebook.php" name="ebook" method="post" role="form" class="ebookForm">
         <input type="hidden" name="token_" value="123zxcfghopq">
-        <div class="form-group col-md-3 col-md-offset-2 col-sm-4">
-          <div class=" controls">
-            <input name="nome__" placeholder="Seu nome" class="form-control" type="text">
+        <div class="col-md-3 col-md-offset-2 col-sm-4">
+          <div class="form-group ">
+            <input name="nome__" placeholder="Seu nome" data-rule="minlen:4" data-msg="Por favor, preencha o mínimo de 4 letras no Nome"  class="form-control" type="text">
+          	<div class="validation"></div>
           </div>
         </div>
         <!-- End email input -->
-        <div class="form-group col-md-3 col-sm-4">
-          <div class=" controls">
-            <input name="email__" placeholder="Seu melhor email" class="form-control" type="email">
+        <div class="col-md-3 col-sm-4">
+          <div class="form-group ">
+            <input name="email__" placeholder="Seu melhor email" data-rule="email" data-msg="Por favor, informe um email válido"  class="form-control" type="email">
+          	<div class="validation"></div>
           </div>
         </div>
         <!-- End email input -->
         <div class="col-md-2 col-sm-4">
-         <button type="submit" class="button1 success">Solicitar</button>
+         <button type="submit" id="btnSend" class="button1">Solicitar</button>
             <!--button name="submit" type="submit" id="button1" class="btn btn-block mais">Solicitar
             </button-->
         </div>
