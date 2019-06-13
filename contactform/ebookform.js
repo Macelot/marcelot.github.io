@@ -114,11 +114,12 @@ jQuery(document).ready(function($) {
           $("#sendmessageebook").removeClass("show");
           $("#errormessageebook").addClass("show");
           $('#errormessageebook').html(msg);
-          $("#btnSend").addClass("success");
+          //$("#btnSend").addClass("success");
         }
 
       }
     });
+    $("#btnSend").removeClass("error");
     $("#btnSend").addClass("success");
     return false;
   });
