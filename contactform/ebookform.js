@@ -91,7 +91,8 @@ jQuery(document).ready(function($) {
     if (ferror) {
     	//adicionar classe error
     	console.log(ferror);
-    	 $("#btnSend").addClass("error");	
+    	$("#btnSend").removeClass("success");
+    	$("#btnSend").addClass("error");	
     	return false;
     }
     else var str = $(this).serialize();
