@@ -109,6 +109,7 @@ jQuery(document).ready(function($) {
           $("#sendmessageebook").addClass("show");
           $("#errormessageebook").removeClass("show");
           //success
+          //$("#btnSend").addClass("success");
         } else {
           $("#sendmessageebook").removeClass("show");
           $("#errormessageebook").addClass("show");
@@ -118,6 +119,7 @@ jQuery(document).ready(function($) {
 
       }
     });
+    $("#btnSend").addClass("success");
     return false;
   });
 
