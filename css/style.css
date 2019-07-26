@@ -76,6 +76,16 @@ a:hover, a:focus{
     outline: none;
 }
 
+.thumbnail:hover {
+    position:relative;
+    top:-25px;
+    left:-35px;
+    width:600px;
+    height:auto;
+    display:block;
+    z-index:999;
+}
+
 
 
 /***********************************
@@ -575,7 +585,7 @@ Contact Us
 #errormessage, errormessageebook {
     color: orange;
     display:none;
-    border:1px solid orange;
+    border:2px solid orange;
     text-align:center;
     padding:15px;
     font-weight:600;
