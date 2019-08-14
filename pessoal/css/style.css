@@ -135,9 +135,9 @@ h6 {
 #intro .intro-text {
   position: absolute;
   left: 0;
-  top: 60px;
+  top: 10px;
   right: 0;
-  height: calc(50% - 60px);
+  height: calc(80% - 10px);
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
