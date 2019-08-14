@@ -90,7 +90,6 @@
        	<p>Digite a data de seu nascimento <input type="text" id="dataR">
         <button type="button" class="btn btn-success" onclick="vai(dataR.value)">Que dia eu nasci?</button>
         <h2><div id="coloca"></div></h2>
-       <br><br>
        <h2><div id="raio" ></div></h2>
         
         
@@ -251,8 +250,8 @@
 			var dia = teste.getDay();
 			if(semana[dia]){
 				//alert(semana[dia]);
-				document.getElementById('coloca').innerHTML = semana[dia];
-				document.getElementById('raio').innerHTML = raio[dia];
+				document.getElementById('coloca').innerHTML = "Você nasceu em "+semana[dia];
+				document.getElementById('raio').innerHTML = "A cor do seu raio é "+raio[dia];
 				}
 		}
   	
@@ -267,8 +266,8 @@
 			var dia = teste.getDay();
 			if(semana[dia]){
 				//alert(semana[dia]);
-				document.getElementById('coloca').innerHTML = semana[dia];
-				document.getElementById('raio').innerHTML = raio[dia];
+				document.getElementById('coloca').innerHTML = "Você nasceu em "+semana[dia];
+				document.getElementById('raio').innerHTML = "A cor do seu raio é "+raio[dia];
 				}
 		});
 	  });
