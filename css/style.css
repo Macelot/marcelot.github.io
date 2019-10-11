@@ -684,6 +684,16 @@ ul.social-network li {
 
 }
 
+.social-network a.icoInstagram:hover {
+  background-color: #f5b46e;
+
+}
+
+.social-network a.icoTree:hover {
+  background-color: #94fa82;
+
+}
+
 .social-network a.icoTwitter:hover {
   background-color: #33ccff;
 
