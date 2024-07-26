@@ -34,7 +34,7 @@
     <script src="dados.js"></script>
     <script>
         // Inicializar o mapa centrado em Porto Alegre
-        var map = L.map('map').setView([-30.0346, -51.2177], 10);
+        var map = L.map('map').setView([-30.0346, -51.2177], 7);
 
         // Adicionar camada de tiles do OpenStreetMap
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -143,10 +143,10 @@
             if (circle.idRegiao == idRegiao) {
                     //conferir como esta
                     if(circle.status==0){
-                        circle.setStyle({ fillColor: 'yellow', fillOpacity: 0.2, color: 'black' }); // Cor de destaque
+                        circle.setStyle({ fillColor: 'yellow', fillOpacity: 0.1, color: 'black' }); // Cor de destaque
                         circle.status=1;
                     }else{
-                        circle.setStyle({ fillColor: regionColors[idRegiao], fillOpacity: 0.5, color: regionColors[idRegiao] });
+                        circle.setStyle({ fillColor: regionColors[idRegiao], fillOpacity: 0.5, color: regionColors[idRegiao]});
                         circle.status=0;
                     }
                     //lastHighlightedRegion[idRegiao]=1;
@@ -161,6 +161,9 @@
     }
         legend.onAdd = function (map) {
             var div = L.DomUtil.create('div', 'legend');
+            // Adiciona o título centralizado e em negrito
+            div.innerHTML += '<div style="text-align: center; font-weight: bold; margin-bottom: 10px;">Legenda</div>';
+
             Object.keys(regionColors).forEach(function (idRegiao) {
                 regiaoEncontrada = regioes.find(regiao => regiao.numero == idRegiao);
                 div.innerHTML += '<div class="legend-item" data-id-regiao="' + idRegiao + '">' +
