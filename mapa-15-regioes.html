@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Desenhar Polígonos no Leaflet</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-easybutton/2.5.0/easy-button.min.css" />
+    <style>
+        #map { height: 600px; }
+        .legend {
+            background: white;
+            padding: 10px;
+            line-height: 1.5em;
+        }
+        .legend-color-box {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            margin-right: 8px;
+            border: 1px solid #000;
+        }
+        .legend-item {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-easybutton/2.5.0/easy-button.min.js"></script>
+    <script src="dados.js"></script>
+    <script>
+        // Inicializar o mapa centrado em Porto Alegre
+        var map = L.map('map').setView([-30.0346, -51.2177], 10);
+
+        // Adicionar camada de tiles do OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+        }).addTo(map);
+
+        // Grupo de camadas para armazenar polígonos desenhados
+        var drawnItems = new L.FeatureGroup();
+        map.addLayer(drawnItems);
+
+        // Adicionar controles de desenho ao mapa
+        var drawControl = new L.Control.Draw({
+            edit: {
+                featureGroup: drawnItems
+            }
+        });
+        map.addControl(drawControl);
+
+        // Armazenar coordenadas da cidade clicada
+        var cityCoordinates = {};
+
+        // Adicionar marcador para a cidade clicada
+        function addCityMarker(latlng, cityName) {
+            L.marker(latlng).addTo(map)
+                .bindPopup('<b>' + cityName + '</b>')
+                .openPopup();
+        }
+
+        // Captura o evento de clique no mapa para adicionar um marcador
+        map.on('click', function (e) {
+            var latlng = e.latlng;
+            // Adicione um marcador na posição clicada
+            addCityMarker(latlng, 'Cidade Selecionada');
+            // Armazenar coordenadas da cidade clicada
+            cityCoordinates = latlng;
+        });
+
+        // Evento disparado quando uma nova forma é criada
+        map.on(L.Draw.Event.CREATED, function (event) {
+            var layer = event.layer;
+            drawnItems.addLayer(layer); // Adiciona a camada ao grupo de camadas desenhadas
+        });
+
+        // Função para desenhar um polígono ao redor da cidade clicada
+        function drawPolygonAroundCity() {
+            if (Object.keys(cityCoordinates).length === 0) {
+                alert('Clique em um ponto do mapa para selecionar a cidade.');
+                return;
+            }
+            // Coordenadas fictícias ao redor da cidade (ajuste conforme necessário)
+            var buffer = 0.01; // Ajuste para alterar o tamanho do polígono
+            var latlngs = [
+                [cityCoordinates.lat + buffer, cityCoordinates.lng - buffer],
+                [cityCoordinates.lat + buffer, cityCoordinates.lng + buffer],
+                [cityCoordinates.lat - buffer, cityCoordinates.lng + buffer],
+                [cityCoordinates.lat - buffer, cityCoordinates.lng - buffer]
+            ];
+
+            var polygon = L.polygon(latlngs, {
+                color: getRandomColor(),
+                weight: 2,
+                opacity: 0.7,
+                fillOpacity: 0.5
+            }).addTo(drawnItems);
+
+            polygon.bindPopup('Polígono ao redor da cidade');
+        }
+
+        // Função para gerar uma cor aleatória
+        function getRandomColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        // Círculos criados
+        var cityCircles = [];
+
+        // Adicionar círculos ao redor de cada cidade
+        cities.forEach(function(city) {
+            var circle = L.circle([city.lat, city.lng], {
+                color: regionColors[city.idRegiao], // Cor baseada na região
+                fillColor: regionColors[city.idRegiao],
+                fillOpacity: 0.5,
+                radius: 10000, // Raio do círculo em metros
+                //idRegiao: city.idRegiao
+            }).addTo(map).bindPopup('<b>' + city.name + '</b>');
+
+            // Armazenar o círculo para referência
+            circle.idRegiao = city.idRegiao;
+            cityCircles.push(circle);
+        });
+
+        // Criar a legenda
+        var legend = L.control({ position: 'bottomright' });
+
+        var lastHighlightedRegion = new Array(16).fill(0);
+        console.log(lastHighlightedRegion);
+
+     // Definir o estilo para uma região específica
+     function highlightRegion(idRegiao) {
+        cityCircles.forEach(function(circle) {
+            if (circle.idRegiao == idRegiao) {
+                    circle.setStyle({ fillColor: 'yellow', fillOpacity: 0.2, color: 'black' }); // Cor de destaque
+                    //lastHighlightedRegion[idRegiao]=1;
+
+                ///}else {
+                    // Destacar a região
+                    //circle.setStyle({ fillColor: regionColors[idRegiao], fillOpacity: 0.5, color: regionColors[idRegiao] });
+                    //lastHighlightedRegion = null; // Resetar o destaque
+                
+            }
+        });
+    }
+        legend.onAdd = function (map) {
+            var div = L.DomUtil.create('div', 'legend');
+            Object.keys(regionColors).forEach(function (idRegiao) {
+                regiaoEncontrada = regioes.find(regiao => regiao.numero == idRegiao);
+                div.innerHTML += '<div class="legend-item" data-id-regiao="' + idRegiao + '">' +
+                    '<span onclick="highlightRegion(' + idRegiao + ')" class="legend-color-box" style="background-color:' + regionColors[idRegiao] + ';"></span>' +
+                    'Região ' + regiaoEncontrada.nome  + '</div>';
+            });
+            return div;
+        };
+
+        legend.addTo(map);
+
+        // Impedir a propagação de eventos de clique na legenda
+        L.DomEvent.on(document.querySelector('.legend'), 'click', L.DomEvent.stopPropagation);
+
+        // Adicionar evento de clique na legenda para destacar os círculos
+        document.querySelector('.legend').addEventListener('click', function (e) {
+            if (e.target && e.target.closest('.legend-item')) {
+                var idRegiao = e.target.closest('.legend-item').getAttribute('data-id-regiao');
+                cityCircles.forEach(function(item) {
+                    if (item.idRegiao === idRegiao) {
+                        item.circle.setStyle({
+                            weight: 5,
+                            color: '#000000',
+                            fillColor: regionColors[item.idRegiao],
+                            fillOpacity: 0.7
+                        });
+                    } 
+                });
+            }
+        });
+
+        
+
+    </script>
+</body>
+</html>
