@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Desenhar Polígonos no Leaflet</title>
+    <title>15 Regiões RS e SC</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/1.0.4/leaflet.draw.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-easybutton/2.5.0/easy-button.min.css" />
     <style>
-        #map { height: 600px; }
+        #map { height: 800px; }
         .legend {
             background: white;
             padding: 10px;
@@ -123,7 +123,7 @@
                 fillColor: regionColors[city.idRegiao],
                 fillOpacity: 0.5,
                 radius: 10000, // Raio do círculo em metros
-                //idRegiao: city.idRegiao
+                status: 0
             }).addTo(map).bindPopup('<b>' + city.name + '</b>');
 
             // Armazenar o círculo para referência
@@ -141,7 +141,14 @@
      function highlightRegion(idRegiao) {
         cityCircles.forEach(function(circle) {
             if (circle.idRegiao == idRegiao) {
-                    circle.setStyle({ fillColor: 'yellow', fillOpacity: 0.2, color: 'black' }); // Cor de destaque
+                    //conferir como esta
+                    if(circle.status==0){
+                        circle.setStyle({ fillColor: 'yellow', fillOpacity: 0.2, color: 'black' }); // Cor de destaque
+                        circle.status=1;
+                    }else{
+                        circle.setStyle({ fillColor: regionColors[idRegiao], fillOpacity: 0.5, color: regionColors[idRegiao] });
+                        circle.status=0;
+                    }
                     //lastHighlightedRegion[idRegiao]=1;
 
                 ///}else {
